@@ -1,0 +1,17 @@
+– package.json => Defines project metadata, dependencies, and scripts.
+ contains all the important information about your project, including:
+✔️ Project Name (name)
+✔️ Version (version)
+✔️ Description (description)
+✔️ Dependencies (dependencies) → Required packages
+✔️ Dev Dependencies (devDependencies) → Packages needed only for development
+✔️ Scripts (scripts) → Commands like npm start
+✔️ Main File (main) → Entry point of the project
+
+It helps npm manage dependencies and makes your project easy to share and install
+
+
+– package-lock.json locks the exact versions of all installed dependencies to ensure consistency.
+– node_modules/ is a folder that stores all the installed dependencies for your project.
+– dependencies =>  Required for running the project.
+– devDependencies => Required only for development (not production).
