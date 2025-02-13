@@ -1,0 +1,20 @@
+- #JSX (JavaScript XML) => JSX must return only ONE root element.
+
+JSX is a syntax extension that allows you to write HTML-like code inside JavaScript.
+It gets transpiled into React.createElement calls using Babel (a JavaScript compiler).
+Attributes in JSX use camelCase (className, onClick instead of class, onclick).
+This is syntactic sugar for React.createElement.
+
+🔥 Transpilation Process: Babel transpiles JSX into plain JavaScript that browsers understand.
+
+JSX → Babel converts it into React.createElement.
+React.createElement → Creates a JavaScript object representation of the element.
+JavaScript object → React renders it into an actual DOM element.
+
+- #Functional Components (Modern React)
+Functional components are JavaScript functions that return JSX.
+They start with a capital letter by convention.
+because how JSX is transpiled and how browsers handle HTML elements
+- it should must return JSX
+
+- #Component Composition => is the process of nesting one component inside another
