@@ -1,0 +1,62 @@
+React First Class - Short Notes 📝
+1️⃣ React CDN – Used React via CDN without installing npm.
+
+Included React and ReactDOM using <script> tags.
+2️⃣ React.createElement() – Creates elements instead of writing HTML.
+
+
+const heading = React.createElement("h1", {}, "Hello World from React");
+1st argument: Tag name ("h1")
+2nd argument: Attributes ({})
+3rd argument: Content ("Hello World from React")
+
+3️⃣ Rendering in React – Uses root.render() to show elements on the page.
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(heading);
+Converts React object into an actual HTML element and displays it.
+
+4️⃣ Nested Elements in React
+
+Multiple elements inside React.createElement() use an array [].
+
+const parent = React.createElement("div", { id: "parent" }, [
+    React.createElement("div", { id: "child" }, [
+        React.createElement("h1", {}, "I am h1 tag"),
+        React.createElement("h2", {}, "I am h2 tag")
+    ])
+]);
+root.render(parent);
+Creates a nested structure dynamically.
+
+5️⃣ React Element → Object → HTML
+
+React elements are JavaScript objects, converted into HTML by ReactDOM.
+6️⃣ Next Class: JSX
+
+JSX makes writing React easier (e.g., <h1>Hello JSX</h1> instead of React.createElement()).
+Key Takeaways ✅
+✔ React uses React.createElement() instead of plain HTML.
+✔ ReactDOM renders React elements into the browser.
+✔ Nested elements are passed as an array.
+✔ React elements are objects before being converted to HTML.
+
+------------Episode2 Notes-------------------------------------------------------------------
+– package.json => Defines project metadata, dependencies, and scripts.
+ contains all the important information about your project, including:
+✔️ Project Name (name)
+✔️ Version (version)
+✔️ Description (description)
+✔️ Dependencies (dependencies) → Required packages
+✔️ Dev Dependencies (devDependencies) → Packages needed only for development
+✔️ Scripts (scripts) → Commands like npm start
+✔️ Main File (main) → Entry point of the project
+
+It helps npm manage dependencies and makes your project easy to share and install
+
+
+– package-lock.json locks the exact versions of all installed dependencies to ensure consistency.
+– node_modules/ is a folder that stores all the installed dependencies for your project.
+– dependencies =>  Required for running the project.
+– devDependencies => Required only for development (not production).
