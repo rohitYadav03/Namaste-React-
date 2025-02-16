@@ -1,0 +1,43 @@
+1. Is JSX mandatory for React?
+No, but it makes coding easier by allowing HTML & JavaScript together.
+Without JSX, you need React.createElement(), which is complex.
+
+2. Is ES6 mandatory for React?
+No, but recommended.
+ES6+ makes React code cleaner and better (e.g., let/const, arrow functions, classes).
+
+3. {TitleComponent} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>}
+{TitleComponent} → Refers to a JavaScript variable/function.
+{<TitleComponent/>} → Renders a React component.
+{<TitleComponent></TitleComponent>} → Used when adding child components inside.
+
+4. How to write comments in JSX?
+Use {/* comment */} inside JSX.
+
+5. What is <React.Fragment></React.Fragment> and <></>?
+  Wrap multiple elements without extra <div> tags.
+<></> is a shorter version of <React.Fragment>
+
+6. Why do we need keys in React?
+Keys help React identify list items & update only changed ones.
+
+7. Can we use index as a key in React?
+Yes, but not recommended (may cause UI bugs if items change order).
+Use unique IDs instead.
+
+8. What are props in React?
+Props (properties) pass data from parent to child components.
+
+9.  What is Config Driven UI?
+UI changes based on config files (JSON) instead of hardcoded values.
+Useful for dynamic & scalable apps.
+
+10. Virtual DOM vs Real DOM
+Feature	 Virtual DOM	      |  Real DOM
+Speed	 Fast	              | Slow
+Updates	 Only updates changes |	Updates everything
+Memory	 Efficient	          |  Wastes memory
+React uses Virtual DOM → Updates only changed elements → Faster UI! 🚀
+
+
+
