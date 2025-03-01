@@ -1,0 +1,77 @@
+export/Import ->
+1. defult => export defult FileName;
+2. Named export or Imort => use {} during named import and write export before the variable
+
+useState hook => 
+react fiber 
+virtual dom 
+diff algorith 
+reconsilation 
+how react.js work and why it is fast 
+
+class 5
+
+1. Export & Import in JavaScript
+
+-> Default Export (export default)
+
+Only one default export per file.
+Imported without curly braces ({}).
+Import name can be different from the exported name.
+
+-> Named Export (export)
+
+Can export multiple values from a module.
+Must use curly braces ({}) when importing.
+
+-> #useState Hook (State Management)
+useState is a React Hook for managing state in functional components.
+State updates trigger re-renders.
+Batching: Multiple state updates inside event handlers are combined.
+
+-> 3. React Fiber (New Reconciliation Algorithm)
+Introduced in React 16 for better UI rendering.
+Key Features:
+Interruptible Rendering: Can pause and resume rendering.
+Priority Scheduling: UI updates are prioritized.
+Concurrency: Handles multiple tasks efficiently.
+Error Recovery: Can recover from UI errors without crashing the whole app.
+
+4. Virtual DOM (VDOM)
+Virtual DOM is a lightweight copy of the Real DOM.
+React compares Virtual DOM versions to update the UI efficiently.
+Why not update the real DOM directly?
+Direct DOM updates are slow and trigger multiple reflows.
+Virtual DOM minimizes updates by calculating only the necessary changes.
+
+5. Diff Algorithm (Efficient DOM Updates)
+React compares the new Virtual DOM with the previous Virtual DOM.
+
+Key Optimizations:
+Element Type Comparison:
+If same type, React updates only attributes.
+If different type, React unmounts and mounts a new element.
+
+Keys in Lists:
+key helps React identify list items efficiently.
+Bad: key={index} (causes unnecessary re-renders).
+Good: key={uniqueId}.
+
+6. Reconciliation (Efficient UI Updates)
+Reconciliation is React’s process of updating the UI efficiently.
+Steps:
+New Virtual DOM is created.
+React compares (diffs) the new Virtual DOM with the old one.
+React finds the minimal updates.
+Updates only the necessary elements in the Real DOM.
+
+7. Why React is Fast?
+Virtual DOM: Prevents unnecessary real DOM updates.
+Fiber Architecture: Uses concurrent rendering for smooth UI.
+Efficient Reconciliation: Uses the diff algorithm to update only changed elements.
+Batching Updates: Groups multiple state updates to avoid extra renders.
+Concurrent Mode (Newer Feature): Allows React to pause and resume rendering for performance optimization.
+
+----------------class 6-------------------------------
+monolith Architecture => 
+microsevie Architecture => 
