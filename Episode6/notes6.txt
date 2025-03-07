@@ -1,0 +1,157 @@
+# How does React work?
+
+-> React is a JavaScript library that follows a component-based architecture and optimizes UI updates using the Virtual DOM.
+Instead of directly updating the Real DOM (which is slow), React creates a lightweight Virtual DOM (a JavaScript object).
+When a component's state or props change:
+1️⃣ React creates a new Virtual DOM and compares it with the previous one using the Diffing Algorithm.
+2️⃣ It finds the differences (minimal updates required) and efficiently updates only the necessary parts of the Real DOM—this process is called Reconciliation.
+This makes React fast, efficient, and optimized for performance.
+
+# What is JSX?
+JSX is a syntax extension for JavaScript that allows writing HTML-like code inside JS.
+It makes React components more readable and easier to write.
+
+ Why JSX?
+Makes UI structure declarative and easier to visualize.
+Babel transpiles it into React.createElement(), which creates the Virtual DOM representation.
+Helps in writing cleaner, more maintainable React code.
+
+✅ JSX Rules & Best Practices
+1️⃣ JSX must have a single parent element (wrap multiple elements in <>...</> or <div>...</div>).
+2️⃣ Use {} to embed JavaScript expressions inside JSX (<h1>{2 + 2}</h1>).
+3️⃣ Use className instead of class, since class is a reserved JS keyword.
+4️⃣ All tags must be properly closed (<br />, <img src="" />).
+5️⃣ Event handlers use camelCase (onClick instead of onclick).
+
+JSX makes React more intuitive and developer-friendly, but ultimately, it's just JavaScript! 🚀
+
+# What is a Functional Component?
+A functional component is a JavaScript function that returns JSX. It is the simplest way to create a component in React.
+
+Key Characteristics
+1️⃣ Must start with a capital letter (React treats lowercase as HTML tags).
+2️⃣ Returns JSX (or null).
+3️⃣ Reusable & composable (can be used inside other components).
+4️⃣ No this keyword, unlike class components.
+5️⃣ Pure functions – They take props as input and return JSX without side effects.
+
+ Component Composition (Using Components Inside Components)
+
+# Props in React:
+
+1️⃣ Props are properties that are passed to a component.
+2️⃣ They are passed from parent to child (one-way data flow).
+3️⃣ Parent = The component that passes prop.
+4️⃣ Child = The component that receives the props.
+5️⃣ Props are passed as attributes inside JSX.
+6️⃣ Props are immutable → The child component cannot modify the props it receives.
+7️⃣ We can destructure props to make the code cleaner.
+
+📌 useState Hook :
+
+useState() => is a React Hook used to create and manage state in functional components.
+
+Syntax:
+const [state, setState] = useState(initialValue)
+
+How It Works:
+state → Holds the value.
+setState() → Function to update the state.
+initialValue → Starting value of the state.
+
+✅ Key Points of useState
+It re-renders the component whenever state changes.
+Never update state directly like count++.
+Use setState() to update the value.
+
+📌 Handling Events in React
+React uses camelCase for event names (not lowercase like HTML).
+
+Event	        Description
+onClick	        Click event
+onChange	    Input field changes
+onSubmit	    Form submission
+onMouseEnter	Hover effect
+onMouseLeave	Mouse leaves element
+
+📌 Rendering Lists & Keys
+Used to display dynamic lists like arrays.
+Use .map() method to loop through the list.
+✅ Why Keys?
+Keys help React identify which items changed or deleted.
+
+Important Points 🔥
+Always use keys inside .map().
+Keys must be unique.
+
+✅ Conditional Rendering allows showing different content based on conditions.
+
+1️⃣ if Statements (Outside JSX)
+Used outside JSX to return different components.
+
+2️⃣ Ternary Operator ( ? : )
+Inline conditional rendering inside JSX.
+
+condition ? <Component1 /> : <Component2 />
+👉 Best for rendering two options.
+
+3️⃣ && Short-Circuit Evaluation
+Renders content only if the condition is true.
+
+condition && <Component />
+👉 Best for showing content based on one condition.
+
+⚡ Key Points:
+Use if outside JSX.
+Use ? : inside JSX for two options.
+Use && for single condition rendering.
+Return null if nothing needs to be shown.
+
+# What is useEffect() Hook?
+The useEffect hook is used to perform side effects in React components.
+Side Effects mean:
+
+API calls
+DOM Manipulation
+Event Listeners
+Timers (setInterval, setTimeout)
+Subscriptions
+
+🔑 Syntax
+
+useEffect(() => {
+  // Your Side Effect Code
+  return () => {
+    // Cleanup Code (Optional)
+  };
+}, [dependencies]);
+
+
+🎯 How useEffect() Works
+Case	                       When will it run?	                  Cleanup Run
+No Dependency Array	           On every render + re-render 🔄	    ✅ Yes (Every re-render)
+Empty Dependency []	           Only on page load 🔥	               ✅ Only on Unmount
+With Dependencies [count]	   Runs only when dependencies change    ✅ Before running the effect again
+
+🧠 Why Do We Need return() inside useEffect()?
+The return inside useEffect() is used to clean up side effects like:
+
+Clearing Timers
+Removing Event Listeners
+Cancelling API Requests
+Unsubscribing from Streams
+
+
+🎯 Rule of Thumb 🧠
+Task	                Cleanup Needed?
+API Call	            ❌ No
+Timers	                ✅ Yes
+Event Listeners	        ✅ Yes
+DOM Manipulation	    ✅ Yes
+State Changes	       ❌ No
+Local Storage	       ❌ No
+Subscriptions(WebSocket, Audio Streams)	✅ Yes
+
+Why Cleanup Is Needed?
+If we don't use the return(), the old effect will still run in memory even if the component is removed or re-rendered — This will create Memory Leaks.
+
