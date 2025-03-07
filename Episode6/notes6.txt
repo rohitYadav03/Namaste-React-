@@ -155,3 +155,85 @@ Subscriptions(WebSocket, Audio Streams)	✅ Yes
 Why Cleanup Is Needed?
 If we don't use the return(), the old effect will still run in memory even if the component is removed or re-rendered — This will create Memory Leaks.
 
+1️⃣ Monolithic vs Microservices Architecture
+📌 What is Monolithic Architecture?
+A monolithic application is built as a single unit, where the frontend, backend, database, and all functionalities are part of one big codebase.
+
+🔹 How does it work?
+Everything is inside a single project.
+If you want to update one feature, the whole application must be redeployed.
+✅ Advantages:
+✔ Simpler to develop and deploy.
+✔ Easier to debug (since everything is in one place).
+✔ Works well for small applications.
+
+❌ Disadvantages:
+✖ Scalability issues: As the app grows, it becomes difficult to manage.
+✖ Deployment is slow: A small change requires redeploying the entire app.
+✖ Single point of failure: If one part crashes, the entire app goes down.
+
+🛠 Example:
+A basic e-commerce app where the frontend (React), backend (Node.js/Express), and database (MongoDB) all exist in one single codebase.
+
+📌 What is Microservices Architecture?
+A microservices application is divided into multiple small, independent services that communicate with each other through APIs.
+
+🔹 How does it work?
+Each microservice has its own database and logic.
+Services communicate using API calls (REST, GraphQL).
+Each service can be deployed separately.
+✅ Advantages:
+✔ Easier to scale – add/remove features without affecting other services.
+✔ More reliable – if one service fails, others continue working.
+✔ Faster development – different teams can work on different services.
+
+❌ Disadvantages:
+✖ More complex – requires strong API communication.
+✖ Debugging is harder – since logs and errors are spread across different services.
+
+🛠 Example:
+A large e-commerce app with separate microservices for:
+
+User Authentication
+Product Catalog
+Order Management
+Payment Processing
+
+2️⃣ When Should You Make an API Call?
+📌 Approach 1: Call API Before Rendering (Bad Approach)
+Page Loads
+Fetch API Data
+Render UI
+❌ Problems:
+✖ UI takes time to load (users see a blank screen).
+✖ Bad user experience if the API is slow.
+
+📌 Approach 2: Render UI First, Then Fetch API Data (Better Approach)
+Page Loads → Render UI (Show Loading State)
+Fetch API Data in the background.
+Update UI when data is received.
+✅ Why is this better?
+✔ Faster page load (UI renders quickly).
+✔ Better user experience (loading state visible).
+✔ Handles slow API responses gracefully.
+
+3️⃣ useEffect Hook – Handling Side Effects
+📌 What is useEffect?
+A React Hook used to handle side effects (API calls, timers, event listeners).
+Runs after rendering, not during.
+
+✅ Why use useEffect for API calls?
+✔ Ensures API calls happen only when needed.
+✔ Prevents unnecessary API requests on every render
+
+7️⃣ Shimmer UI (Skeleton Loading Effect)
+📌 What is a Shimmer UI?
+A loading effect (gray boxes or skeleton screens) shown while data is being fetched.
+
+9️⃣ React Reconciliation & Rendering Optimization
+📌 What Happens When State Updates?
+React detects state change.
+It compares old Virtual DOM with new one.
+Only the changed parts of the UI get updated.
+✔ Optimizes performance by avoiding unnecessary updates.
+
