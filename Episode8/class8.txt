@@ -1,0 +1,165 @@
+📌 Class-Based Components in React
+
+1️⃣ Creating a Class Component
+A class component is a JavaScript class that extends React.Component.
+It must have a render() method that returns JSX.
+
+Example:
+class UserClass extends React.Component {
+    render() {
+        return <h2>Hello, I am a class component!</h2>;
+    }
+}
+Important: Every class component must extend React.Component to inherit React features.
+
+2️⃣ Props in Class Components
+Props are passed from the parent and can be accessed using this.props.
+Example of using props in a class component:
+
+class UserClass extends React.Component {
+    render() {
+        return <h2>Name: {this.props.name}</h2>;
+    }
+}
+// Using the component
+root.render(<UserClass name="Rohit Yadav" />);
+
+3️⃣ Constructor in Class Components
+The constructor is optional but is used when:
+We initialize state.
+We modify or use props inside the constructor.
+When using a constructor, we must call super(props).
+Example:
+
+class UserClass extends React.Component {
+    constructor(props) {
+        super(props);  // Calls the parent constructor (React.Component)
+        console.log(this.props);  // ✅ Now this.props is available
+    }
+
+    render() {
+        return <h2>Name: {this.props.name}</h2>;
+    }
+}
+If we don’t use super(props), this.props will be undefined!
+
+4️⃣ Understanding super(props)
+super() calls the parent class (React.Component) constructor.
+super(props) ensures that this.props is available inside the constructor.
+If you don’t call super(props), React will throw an error when accessing this.props inside the constructor.
+
+Code	            Effect
+super()	            Calls the parent constructor but doesn’t initialize this.props.
+super(props)	    Calls the parent constructor and initializes this.props.
+No super()	❌      this is not initialized → Error when accessing this.props.
+
+5️⃣ When to Use a Constructor?
+✅ Use a constructor only if:
+You need to initialize state.
+You need to modify or use props inside the constructor.
+❌ If the component only uses props and doesn’t need state, do not write a constructor.
+
+✅ Without a constructor (best practice if no state is needed):
+
+class UserClass extends React.Component {
+    render() {
+        return <h2>Name: {this.props.name}</h2>;
+    }
+}
+
+6️⃣ Summary of Class Components
+Extend React.Component	Required to make a class a React component.
+render() method	Must return JSX.
+Props (this.props)	Used to pass data from parent to child component.
+Constructor (constructor)	Used when we need state or to modify props.
+super(props)	Calls the parent constructor and initializes this.props.
+
+🔥 Key Takeaways
+Class components must extend React.Component.
+Props are accessed using this.props.
+Constructor is only needed if using state or modifying props.
+Always call super(props) inside the constructor if using props.
+If there’s no state, avoid using a constructor to keep the code clean
+
+7️⃣ State in Class Components
+State is an object that holds component-specific data.
+Use this.state to define the initial state inside the constructor.
+Use this.setState() to update the state and trigger re-render.
+
+⚡ Key Points:
+this.state stores the component’s data.
+this.setState() updates the state and re-renders the component.
+Never modify state directly (this.state.count++ ❌), always use this.setState() ✅.
+
+8️⃣ Component Lifecycle Methods
+React provides lifecycle methods to control component behavior at different phases.
+
+✅ Lifecycle Order:
+Constructor → Render → componentDidMount
+Re-render when state or props change
+componentWillUnmount before component removal
+
+componentDidMount() – Best for API Calls
+Runs only once after the component loads to UI (ideal for API calls).
+⚡ Key Points:
+Used for API calls, event listeners, or subscriptions.
+Ensures the UI renders first before making an API request.
+
+🔟 React Re-Rendering & State Updates
+State updates cause re-renders.
+React batches updates for performance.
+If parent props change, child re-renders automatically.
+
+1️⃣1️⃣ componentDidUpdate() – Runs on State/Props Change
+Executes after every update (re-render) if props or state change.
+
+✅ Example:
+componentDidUpdate(prevProps, prevState) {
+    if (prevState.count !== this.state.count) {
+        console.log("Count updated:", this.state.count);
+    }
+}
+⚡ Key Points:
+Used to run side effects after updates (e.g., logging, fetching new data).
+Compare prevProps or prevState to avoid unnecessary API calls.
+
+1️⃣2️⃣ componentWillUnmount() – Cleanup Before Component Removal
+Runs before a component is removed from the DOM.
+
+✅ Example:
+componentWillUnmount() {
+    console.log("Component is being removed!");
+}
+
+⚡ Key Points:
+Used to remove event listeners, clear intervals, or clean up resources.
+
+🔥 Final Takeaways on Class Components
+✔ Use this.state for managing component-specific data.
+✔ Update state using this.setState(), never modify state directly.
+✔ Lifecycle methods (componentDidMount, componentDidUpdate, componentWillUnmount) help manage side effects.
+✔ API calls should be made inside componentDidMount() to prevent UI blocking.
+✔ Use componentWillUnmount() for cleanup tasks like clearing timers or event listeners.
+
+🔥 Summary of React Lifecycle Flow
+1. Parent Constructor
+2. Parent Render
+3. Child Constructor
+4. Child Render
+5. React Updates DOM
+6. Child componentDidMount
+7. Parent componentDidMount
+8. If State Changes -> Render Again -> componentDidUpdate
+9. If Component Removed -> componentWillUnmount
+
+✅ React renders parent first, then children.
+✅ React mounts children before calling componentDidMount() in parent.
+✅ If parent updates, children may re-render but won’t re-mount.
+✅ Unmounting removes child components first.
+
+✅ Re-render: Only render() runs. State & lifecycle methods (componentDidMount) remain unchanged.
+✅ Re-mount: Component is destroyed and recreated. constructor and componentDidMount run again, and state resets.
+
+✅ Mounting → Runs constructor(), creates UI with render(), then componentDidMount() (best for API calls).
+✅ Updating → When state/props change, render() runs again, and componentDidUpdate() is triggered.
+✅ Unmounting → Before removing a component, componentWillUnmount() runs to clean up side effects.
