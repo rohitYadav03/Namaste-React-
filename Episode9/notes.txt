@@ -1,0 +1,90 @@
+Custom Hook, Lazy Loading, and Suspense =>
+
+1. useFetch (Custom Hook for Fetching Data)
+
+A custom hook is a reusable function that manages state and logic.
+useFetch(url) fetches data and returns { data, loading, error }.
+Returning an object { data, loading, error } makes it easier to use in components.
+
+Example:
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, [url]);
+
+  return { data, loading, error };
+};
+
+Usage in a Component:
+
+const Users = () => {
+  const { data, loading, error } = useFetch("https://jsonplaceholder.typicode.com/users");
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <ul>
+      {data.map((user) => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+};
+
+✅ Helps manage API calls efficiently
+✅ Handles loading and error states
+
+✅ 2. React.lazy() for Lazy Loading 
+Loads components only when needed (reduces initial load time).
+lazy(() => import("./Component")) dynamically loads components.
+
+Example:
+import React, { lazy, Suspense } from "react";
+const Home = lazy(() => import("./Home"));
+const About = lazy(() => import("./About"));
+
+const App = () => {
+  return (
+    <div>
+      <h1>My Website</h1>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Home />
+        <About />
+      </Suspense>
+    </div>
+  );
+};
+✅ Reduces bundle size
+✅ Loads pages only when needed
+
+✅ 3. Suspense (Handles Lazy Loading)
+React doesn’t know when a lazy-loaded component will be ready.
+Suspense wraps lazy components and shows a fallback (loading spinner) until they load.
+
+Example:
+
+<Suspense fallback={<p>Loading...</p>}>
+  <Home />
+</Suspense>
+✅ Prevents UI from breaking
+✅ Provides a better user experience
+
+✅ 4. Lazy Loading with React Router
+Lazy loading works well with React Router to load pages only when the user visits them.
+
+✅ Faster page load 🚀
+✅ Loads components only when visited
